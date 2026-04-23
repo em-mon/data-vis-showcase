@@ -1,35 +1,168 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analyzing Human Preference in AI Responses</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <section>
-        <h1>
-            Project title
-        </h1>
-        <p>Project description</p>
-    </section>
-        <section>
-            <h2>Visual 1</h2>
-        </section>
-        <section>
-            <h2>Visual 2</h2>
-        </section>
-        <section>
-            <h2>Visual 3</h2>
-        </section>
-        <section>
-            <h2>Visual 4</h2>
-        </section>
-        <section>
-            <h2>Visual 5</h2>
-        </section>
-    </section>
+
+  <header class="top-section">
+    <div class="header-inner">
+      <span class="eyebrow">DSCI 304 Showcase Project</span>
+      <h1>Analyzing Human Preference in AI Responses</h1>
+      <p class="description">This project analyzes the Anthropic Human Helpfulness and Harmlessness 
+        Reinforcement Learning from Human Feedback (HH-RLHF) dataset, a publicly available dataset 
+        collected by Anthropic Labs to study human preferences in AI-generated responses. The dataset 
+        contains ~160,800 pairs of conversations between humans and an AI assistant, where each pair 
+        includes a chosen and a rejected response. The central research question driving this analysis is:
+        what measurable text features, if any, distinguish responses that humans prefer from those they 
+        reject?</p>
+      <div class="header-rule"></div>
+    </div>
+  </header>
+
+  <main class="visual-section">
+
+    <article class="viz-card viz-card--wide">
+      <div class="viz-card__image-wrap">
+        <img src="media/viz1_response_length.png" alt="Visualization 1: Response Length">
+      </div>
+      <div class="viz-card__body">
+        <span class="viz-card__label">Figure 01</span>
+        <h2 class="viz-card__title">Response Length</h2>
+        <p class="viz-card__desc">This visualization examines whether users systematically preferred longer
+            or shorter AI responses by plotting the distribution of word count differences between chosen 
+            and rejected responses for each prompt pair. The distribution follows a normal curve, with a 
+            mean difference of only 2.8 words. This finding challenges the assumption that more elaborate, 
+            detailed responses are inherently preferred, suggesting that users were capable of distinguishing 
+            response quality independent of length.</p>
+      </div>
+    </article>
+
+    <article class="viz-card">
+      <div class="viz-card__image-wrap">
+        <img src="media/viz2_word_overlap.png" alt="Visualization 2: Word Overlap">
+      </div>
+      <div class="viz-card__body">
+        <span class="viz-card__label">Figure 02</span>
+        <h2 class="viz-card__title">Word Overlap</h2>
+        <p class="viz-card__desc">This visualization compares the top 20 frequent words appearing in 
+            chosen versus rejected responses to determine whether the two response types draw from 
+            meaningfully different vocabularies. After removing stopwords and short filler words, 
+            81.8% of the top 20 words were identical across both response types with only two words unique
+            to each. This near-complete vocabulary overlap confirms that chosen and rejected responses are
+            lexically indistinguishable at the surface level. This result strengthens the overall narrative
+            that users were not responding to what words the AI used, but to something more subtle and 
+            harder to quantify.</p>
+      </div>
+    </article>
+
+    <article class="viz-card">
+      <div class="viz-card__image-wrap">
+        <img src="media/viz3_sentiment.png" alt="Visualization 3: Sentiment">
+      </div>
+      <div class="viz-card__body">
+        <span class="viz-card__label">Figure 03</span>
+        <h2 class="viz-card__title">Sentiment Analysis</h2>
+        <p class="viz-card__desc">This visualization scores the sentiment of each chosen and rejected last 
+            response, displaying the full distributions as violin plots with embedded boxplots. While the 
+            violin plots reveal that both distributions are centered slightly above zero, 
+            indicating generally positive tone across all responses, the near-identical shapes and 
+            means confirm that sentiment is not a meaningful driver of human preference. Users were not 
+            simply selecting responses that sounded warmer or more positive.</p>
+      </div>
+    </article>
+
+    <article class="viz-card">
+      <div class="viz-card__image-wrap">
+        <img src="media/viz4_sent_turns.png" alt="Visualization 4: Sentiment by Conversation Depth">
+      </div>
+      <div class="viz-card__body">
+        <span class="viz-card__label">Figure 04</span>
+        <h2 class="viz-card__title">Sentiment by Conversation Depth</h2>
+        <p class="viz-card__desc">This visualization tracks mean sentiment scores for both chosen and 
+            rejected last responses across conversations with depths from 1 to 10. Both response types 
+            show a modest decline in sentiment with deeper conversations suggesting that longer 
+            conversations tend to involve more topics where neutral, measured language is more appropriate.
+            The gap between chosen and rejected sentiment remains consistently narrow throughout all turn 
+            counts, indicating that conversation depth does not amplify or diminish the sentiment difference 
+            between preferred and non-preferred responses.
+</p>
+      </div>
+    </article>
+
+    <article class="viz-card">
+      <div class="viz-card__image-wrap">
+        <img src="media/viz5_response_turns.png" alt="Visualization 5: Response by Conversation Depth">
+      </div>
+      <div class="viz-card__body">
+        <span class="viz-card__label">Figure 05</span>
+        <h2 class="viz-card__title">Response by Conversation Depth</h2>
+        <p class="viz-card__desc">This visualization plots the mean word count of the last assistant 
+            response across conversations with depths from 1 to 10, separately for chosen and rejected 
+            responses. Contrary to what might be expected, both response types get progressively shorter 
+            as conversations deepen, with mean word counts declining steadily from earlier to later turns. 
+            This pattern likely reflects conversational narrowing where as dialogue progresses, human 
+            questions become more specific and focused, cuasing shorter and more targeted responses. 
+            Again, chosen and rejected responses follow nearly identical trajectories throughout, 
+            further confirming that response length does not distinguish preferred from non-preferred AI responses.</p>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>DSCI 304 Showcase Project &mdash; Emma Montero (emm20)</p>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      <div class="modal-img-wrap">
+        <img id="modalImg" src="" alt="">
+      </div>
+      <div class="modal-footer">
+        <span class="viz-card__label" id="modalLabel"></span>
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <p class="modal-desc" id="modalDesc"></p>
+      </div>
+    </div>
+  </div>
+
   <script>
+    const overlay = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const modalLabel = document.getElementById('modalLabel');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const closeBtn = document.getElementById('modalClose');
+
+    document.querySelectorAll('.viz-card').forEach(card => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => {
+        modalImg.src = card.querySelector('img').src;
+        modalImg.alt = card.querySelector('img').alt;
+        modalLabel.textContent = card.querySelector('.viz-card__label').textContent;
+        modalTitle.textContent = card.querySelector('.viz-card__title').textContent;
+        modalDesc.textContent = card.querySelector('.viz-card__desc').textContent;
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeModal() {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
   </script>
- 
+
 </body>
 </html>
- 
